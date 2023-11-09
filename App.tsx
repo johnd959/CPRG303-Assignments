@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import type {PropsWithChildren} from 'react';
+import {PropsWithChildren, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -37,15 +37,18 @@ const os = Platform.OS;
 
 function App(): JSX.Element {
 
-  const [modalVisibility, setModalVisibility] = React.useState(false); 
+  const [taskList, setTaskList] = useState([
+    'Do laundry',
+    'Go to gym',
+    'Walk dog'
+  ]);
  
-  console.log(os); 
 
 
   return(
     <View>
-      <ToDoList styles={styles}/>
-      <ToDoForm styles={styles}/> 
+      <ToDoList taskList={taskList}/>
+      <ToDoForm /> 
     </View>
 
   )
