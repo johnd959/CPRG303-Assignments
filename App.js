@@ -24,37 +24,24 @@ import {
 } from 'react-native';
 
 import {NavigationContainer} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import {createStackNavigator} from '@react-navigation/native-stack';
-
-import ToDoList from './ToDoList';
-import ToDoForm from './ToDoForm';
+import ToDoList from './src/components/ToDoList';
+import ToDoForm from './src/components/ToDoForm';
+import HomeScreen from './src/screens/HomeScreen';
+import AboutScreen from './src/screens/AboutScreen'
 
 const os = Platform.OS;
+const Stack = createNativeStackNavigator();
 
 function App() {
-  const Stack = createStackNavigator();
-
-  const [taskList, setTaskList] = useState([
-    'Do laundry',
-    'Go to gym',
-    'Walk dog',
-  ]);
-
-  function addTask(task) {
-    if (task === '') {
-      Alert.alert('Error', 'Please enter a task before adding.');
-      return;
-    }
-    setTaskList([...taskList, task]);
-  }
 
   return (
-    <NavigationContainer>
-      <View style={styles.mainContainer}>
-        <ToDoList taskList={taskList} />
-        <ToDoForm onAddTask={addTask} />
-      </View>
+    <NavigationContainer style={styles.mainContainer}>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="About" component={AboutScreen}/>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

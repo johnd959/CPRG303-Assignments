@@ -10,7 +10,7 @@ TextInput,
 Button,
 
 } from 'react-native';
-import Todo from './todo'; 
+import Todo from '../../todo'; 
 
 export default function ToDoList({taskList})
 {
